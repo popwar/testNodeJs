@@ -1,7 +1,8 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const express = require('express');
 const jwt = require('express-jwt');
 const jwks = require('jwks-rsa');
-require('dotenv').config();
 
 const app = express();
 
@@ -10,10 +11,10 @@ const checkJwt = jwt({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`
+    jwksUri: 'https://dev-anfuvpslo2gunhw1.au.auth0.com/.well-known/jwks.json'
   }),
-  audience: process.env.AUTH0_AUDIENCE,
-  issuer: `https://${process.env.AUTH0_DOMAIN}/`,
+  audience: 'https://eastlu.com',
+  issuer: 'https://dev-anfuvpslo2gunhw1.au.auth0.com/',
   algorithms: ['RS256']
 });
 
